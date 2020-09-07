@@ -18,142 +18,144 @@ you can use console.save (google it) or if you feel like making your browser a m
 
 
 -------- code to paste in console when your browser is in amazon.com ------
-var arrURL = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_2?ie=UTF8&orderFilter=months-6&search=&startIndex=10', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_3?ie=UTF8&orderFilter=months-6&search=&startIndex=20', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_4?ie=UTF8&orderFilter=months-6&search=&startIndex=30', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_5?ie=UTF8&orderFilter=months-6&search=&startIndex=40', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_6?ie=UTF8&orderFilter=months-6&search=&startIndex=50', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_7?ie=UTF8&orderFilter=months-6&search=&startIndex=60', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=70'];
-var arrURL2 = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=80']
-var counter1=0
-//var arrURL = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0'];
-//var arrURL2 = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=80'];
 
 
-var outputdata2file='';
-//var getDoc = getSourceAsDOM('https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0');
-
-for (var i = 0; i < arrURL.length; i++) {
-    checkAmaData(arrURL[i]);
-
-}
-
-for (var j = 0; i < arrURL2.length; j++) {
-    checkAmaData(arrURL[j]);
-
-}
+		var arrURL = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_2?ie=UTF8&orderFilter=months-6&search=&startIndex=10', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_3?ie=UTF8&orderFilter=months-6&search=&startIndex=20', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_4?ie=UTF8&orderFilter=months-6&search=&startIndex=30', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_5?ie=UTF8&orderFilter=months-6&search=&startIndex=40', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_6?ie=UTF8&orderFilter=months-6&search=&startIndex=50', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_7?ie=UTF8&orderFilter=months-6&search=&startIndex=60', 'https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=70'];
+		var arrURL2 = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=80']
+		var counter1=0
+		//var arrURL = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0'];
+		//var arrURL2 = ['https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=80'];
 
 
-function checkAmaData(myurl) {
+		var outputdata2file='';
+		//var getDoc = getSourceAsDOM('https://www.amazon.com/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_8?ie=UTF8&orderFilter=months-6&search=&startIndex=0');
 
-    var getDoc = getSourceAsDOM(myurl);
+		for (var i = 0; i < arrURL.length; i++) {
+				checkAmaData(arrURL[i]);
 
-    var getBody = getDoc.body;
-    //console.log(getBody.getElementsByClassName('order'));
-    var getOrders = getBody.getElementsByClassName('order');
+		}
 
-    Array.from(getOrders).forEach((myOrder, index) => {
+		for (var j = 0; i < arrURL2.length; j++) {
+				checkAmaData(arrURL[j]);
 
-        var orderPlacedDate = myOrder.getElementsByClassName('a-color-secondary value')[0].innerText;
-        var orderNumber =  myOrder.getElementsByTagName('bdi')[0].innerText;
-        var getTrackingButton = myOrder.querySelectorAll('.track-package-button a');
-        var myTrackingID = "No Tracking ID Yet";
-        if (getTrackingButton === undefined || getTrackingButton.length == 0)  {
-                getTrackingButton = 'No Tracking Yet'
-        }
-        else {
-                getTrackingButton = myOrder.querySelectorAll('.track-package-button a')[0].href;
-                var getDOMTracking = getSourceAsDOM(getTrackingButton);
-                var getBodyDOMTracking = getDOMTracking.body;
-                var getTrackingDetails = getBodyDOMTracking.getElementsByClassName('a-spacing-small carrierRelatedInfo-trackingId-text');
-                if (getTrackingDetails !== undefined && getTrackingDetails.length != 0)  {
-                    myTrackingID = getBodyDOMTracking.getElementsByClassName('a-spacing-small carrierRelatedInfo-trackingId-text')[0].innerText;
-                }
-                
-                
-        }
-
-        
-    
-        var getAllProducts = myOrder.getElementsByClassName('a-fixed-left-grid-inner');
+		}
 
 
+		function checkAmaData(myurl) {
 
-    Array.from(getAllProducts).forEach((order, myIndex) => {
+				var getDoc = getSourceAsDOM(myurl);
 
+				var getBody = getDoc.body;
+				//console.log(getBody.getElementsByClassName('order'));
+				var getOrders = getBody.getElementsByClassName('order');
 
-                var getSignleItem = order;
-//                  console.log(order);
-                
-                var getDescriptionPrice = getSignleItem.getElementsByClassName('a-fixed-left-grid-col a-col-right')[0];
-               
-                
-                var itemDescription = getDescriptionPrice.getElementsByClassName('a-link-normal')[0].innerText;
-                console.log(itemDescription.trim());
+				Array.from(getOrders).forEach((myOrder, index) => {
 
-
-                var itemPrice = getDescriptionPrice.getElementsByClassName('a-size-small a-color-price')[0].innerText;
-//                 console.log(itemPrice.trim());
-
-                
-
-            
-
-                var getImgQty = getSignleItem.getElementsByClassName('item-view-left-col-inner')[0];
-               
-                    
-//                 console.log(getImgQty);
-
-
-                var getImg = getImgQty.querySelectorAll('.item-view-left-col-inner img')[0].getAttribute('data-a-hires');
-//                 console.log("_______________________")
-//                 console.log(getImg);
-
-                var getAsianLink = getImgQty.querySelectorAll('.a-link-normal')[0].getAttribute('href');
-                var mySubStringAsian = getAsianLink.substring(
-                    getAsianLink.lastIndexOf("/product/") + 9, 
-                    getAsianLink.lastIndexOf("/ref")
-                );
-//                 console.log(mySubStringAsian);
+						var orderPlacedDate = myOrder.getElementsByClassName('a-color-secondary value')[0].innerText;
+						var orderNumber =  myOrder.getElementsByTagName('bdi')[0].innerText;
+						var getTrackingButton = myOrder.querySelectorAll('.track-package-button a');
+						var myTrackingID = "No Tracking ID Yet";
+						if (getTrackingButton === undefined || getTrackingButton.length == 0)  {
+										getTrackingButton = 'No Tracking Yet'
+						}
+						else {
+										getTrackingButton = myOrder.querySelectorAll('.track-package-button a')[0].href;
+										var getDOMTracking = getSourceAsDOM(getTrackingButton);
+										var getBodyDOMTracking = getDOMTracking.body;
+										var getTrackingDetails = getBodyDOMTracking.getElementsByClassName('a-spacing-small carrierRelatedInfo-trackingId-text');
+										if (getTrackingDetails !== undefined && getTrackingDetails.length != 0)  {
+												myTrackingID = getBodyDOMTracking.getElementsByClassName('a-spacing-small carrierRelatedInfo-trackingId-text')[0].innerText;
+										}
 
 
-                var getQty = getImgQty.getElementsByClassName('item-view-qty');
-//                 console.log(getImgQty);
-                
-                
-                if (getQty === undefined || getQty.length == 0)  {
-                    getQty = 1;
-                }
-                else {
-//                     console.log('i am here - i have qty listed');
-   
-                    getQty = getImgQty.getElementsByClassName('item-view-qty')[0].innerText.trim();
-//                     console.log(getQty);
-           }
-
-
-          /* added ASIAN NUMBER & myTrackingID */
-
-          outputdata2file=outputdata2file + orderPlacedDate.trim() + '||||' + orderNumber.trim() + '||||' + itemDescription.trim() + '||||' +  getImg.trim() + '||||' +  getQty + '||||' + itemPrice.trim()  + '||||' + getTrackingButton.trim() +'||||' + mySubStringAsian + '||||'+ myTrackingID + '\n';
-          counter1=counter1+1;
-         console.clear();
-          console.log('Completed ' + counter1 + '%');
-        });
+						}
 
 
 
-    });
-
-}
+						var getAllProducts = myOrder.getElementsByClassName('a-fixed-left-grid-inner');
 
 
 
-function getSourceAsDOM(url)
-{
-    xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET",url,false);
-    xmlhttp.send();
-    parser=new DOMParser();
-    return parser.parseFromString(xmlhttp.responseText,"text/html");      
-}
+				Array.from(getAllProducts).forEach((order, myIndex) => {
 
 
-console.clear();
-console.log(outputdata2file)
+										var getSignleItem = order;
+		//                  console.log(order);
+
+										var getDescriptionPrice = getSignleItem.getElementsByClassName('a-fixed-left-grid-col a-col-right')[0];
+
+
+										var itemDescription = getDescriptionPrice.getElementsByClassName('a-link-normal')[0].innerText;
+										console.log(itemDescription.trim());
+
+
+										var itemPrice = getDescriptionPrice.getElementsByClassName('a-size-small a-color-price')[0].innerText;
+		//                 console.log(itemPrice.trim());
+
+
+
+
+
+										var getImgQty = getSignleItem.getElementsByClassName('item-view-left-col-inner')[0];
+
+
+		//                 console.log(getImgQty);
+
+
+										var getImg = getImgQty.querySelectorAll('.item-view-left-col-inner img')[0].getAttribute('data-a-hires');
+		//                 console.log("_______________________")
+		//                 console.log(getImg);
+
+										var getAsianLink = getImgQty.querySelectorAll('.a-link-normal')[0].getAttribute('href');
+										var mySubStringAsian = getAsianLink.substring(
+												getAsianLink.lastIndexOf("/product/") + 9, 
+												getAsianLink.lastIndexOf("/ref")
+										);
+		//                 console.log(mySubStringAsian);
+
+
+										var getQty = getImgQty.getElementsByClassName('item-view-qty');
+		//                 console.log(getImgQty);
+
+
+										if (getQty === undefined || getQty.length == 0)  {
+												getQty = 1;
+										}
+										else {
+		//                     console.log('i am here - i have qty listed');
+
+												getQty = getImgQty.getElementsByClassName('item-view-qty')[0].innerText.trim();
+		//                     console.log(getQty);
+							 }
+
+
+							/* added ASIAN NUMBER & myTrackingID */
+
+							outputdata2file=outputdata2file + orderPlacedDate.trim() + '||||' + orderNumber.trim() + '||||' + itemDescription.trim() + '||||' +  getImg.trim() + '||||' +  getQty + '||||' + itemPrice.trim()  + '||||' + getTrackingButton.trim() +'||||' + mySubStringAsian + '||||'+ myTrackingID + '\n';
+							counter1=counter1+1;
+						 console.clear();
+							console.log('Completed ' + counter1 + '%');
+						});
+
+
+
+				});
+
+		}
+
+
+
+		function getSourceAsDOM(url)
+		{
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.open("GET",url,false);
+				xmlhttp.send();
+				parser=new DOMParser();
+				return parser.parseFromString(xmlhttp.responseText,"text/html");      
+		}
+
+
+		console.clear();
+		console.log(outputdata2file)
 
 ------- END --------
