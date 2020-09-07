@@ -16,6 +16,7 @@ Paste the console output to a file. and import to excel or you DB using the  del
 P.S.
 you can use console.save (google it) or if you feel like making your browser a major security risk enable Access-Control-Allow-Origin and transmit it directly to your API.
 
+Ah,  all the comments // is for debug, I did not remove it as you will probably need it eventually/
 
 -------- code to paste in console when your browser is in amazon.com ------
 
