@@ -1,3 +1,4 @@
+# Author Noa Tendler
 # Amazon-Order-History
 Create a CSV  of your Amazon order History For buyers not sellers with OrderID/QTY/images/tracking#
 Amazon recently has deleted the option download your order history to a CSV file https://www.amazon.com/gp/b2b/reports
